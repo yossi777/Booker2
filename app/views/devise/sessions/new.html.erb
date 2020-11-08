@@ -1,0 +1,30 @@
+<main>
+  <p id="notice"></p>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
+        <h2>Log in</h2>
+        <%= form_with model: @user, url: user_session_path, local: true do |f| %>
+          <div class="field">
+            <label for="user_name">Name</label><br>
+            <input autofocus="autofocus" class="name" type="text" name="user[name]" id="user_name">
+          </div>
+          <div class="field">
+            <%= f.label :password %><br/>
+            <%= f.password_field :password %>
+          </div>
+          <div class="field">
+            <input name="user[remember_me]" type="hidden" value="0"><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me">
+            <label for="user_remember_me">Remember me</label>
+          </div>
+          <div class="actions">
+            <%= f.submit "Log in", class: "btn btn-sm btn-primary" %>
+          </div>
+        <% end %>    
+        <%= link_to "Sign up", new_user_registration_path %><br>
+        <a href="/users/password/new">Forgot your password?</a><br>
+      </div>
+    </div>
+  </div>
+</main>
+
