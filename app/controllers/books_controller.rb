@@ -25,7 +25,8 @@ class BooksController < ApplicationController
     else
       @books= Book.all
       @user = current_user
-      @newbook = Book.new
+      @newbook = Book.new(book_params)
+      flash.now[:alert] = 'メッセージを入力してください。'
       render :index
     end
   end

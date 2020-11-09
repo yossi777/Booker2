@@ -2,16 +2,19 @@
   <% flash.each do |message_type, message| %>
     <%= message %>
   <% end %>
+
+  <%if @book.errors.any? %>
+    <h3><%="#{@book.errors.full_messages.count} errors prohibited this obj being saved:" %></h3>
+  <%end%>
+    
+  <% @book.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+
   <div class="container px-5 px-sm-0">
     <div class="row">
       <%= render partial: 'layouts/sidebar', locals:{ user: @user, newbook: @newbook } %>
-      <%if @book.errors.any? %>
-        <h3><%="#{@book.errors.full_messages.count} errors prohibited this obj being saved:" %></h3>
-      <%end%>
-        
-      <% @book.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+
 
       <div class="col-md-8 offset-md-1">
         <h2>Books</h2>

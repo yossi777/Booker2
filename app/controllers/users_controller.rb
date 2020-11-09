@@ -22,15 +22,13 @@ class UsersController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
-    # @book.save
-    # redirect_to users_path,flash[:notice] = "You have created book successfully"
     
     if @book.save
       redirect_to users_path,flash[:notice] = "You have created book successfully"
     else
       @books= Book.all
       @user = current_user
-      @newbook = Book.new
+      @newbook = Book.new(book_params)
       flash.now[:alert] = 'メッセージを入力してください。'
       render :index
     end
